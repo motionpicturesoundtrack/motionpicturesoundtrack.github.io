@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>click and drag - zoom in</title>
+		<link type="text/css" rel="stylesheet" href="./main.css">
+	</head>
+	<body>
+		<div oncontextmenu="return false;" id="linkbar">
+			<a href="https://github.com/motionpicturesoundtrack" target="_blank" rel="noopener">github</a> - 
+			<a href="https://www.last.fm/user/deffizin" target="_blank" rel="noopener">lastfm</a> - 
+			<a href="mailto:joaopedrobtleite@hotmail.com" target="_blank" rel="noopener">contact</a> -
+			<a href="https://mastodon.social/@motionpicturesoundtrack" target="_blank" rel="noopener">social</a> - 
+			<a href="https://x.com/deffiywt" target="_blank" rel="noopener">x</a>
+		</div>
+		<script type="importmap">
+			{
+				"imports": {
+					"three": "./build/three.module.js"
+					"three/addons/": "./jsm/"
+				}
+			}
+		
+		</script>
+		<script>
+			// to-do: 
+			// set zoom in/out limits so camera doesnt get out of bounds
+
+			import * as THREE from 'three';
+			import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+			import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
+			import { AsciiEffect } from 'three/addons/effects/AsciiEffect.js';
+
+			const width = window.innerWidth, height = window.innerHeight;
+
+			// init
+
+			const camera = new THREE.PerspectiveCamera( 70, width / height, 0.01, 10 );
+			camera.position.z = 0.2;
+			camera.position.x = 0.2;
+			camera.position.y = 0.2;
+
+			const renderer = new THREE.WebGLRenderer( { antialias: true } );
+			renderer.setSize( width, height );
+			renderer.setAnimationLoop( animation );
+			document.body.appendChild( renderer.domElement );
+
+			const pmremGenerator = new THREE.PMREMGenerator( renderer );
+
+			const scene = new THREE.Scene();
+			scene.background = new THREE.Color( 0x252626 );
+			scene.environment = pmremGenerator.fromScene( new RoomEnvironment( renderer ), 0.04 ).texture;
+
+			const geometry = new THREE.BoxGeometry( 0.1, 0.1, 0.1 );
+			const material = new THREE.MeshNormalMaterial();
+
+			const mesh = new THREE.Mesh( geometry, material );
+			scene.add( mesh );
+
+			const controls = new OrbitControls( camera, renderer.domElement );
+			controls.target.set( 0, 0, 0 );
+			controls.update();
+			controls.enablePan = false;
+			controls.enableDamping = true;
+
+			const effect = new AsciiEffect( renderer, '    i@#dDeEfFiIi', { invert: true } );
+			effect.setSize( window.innerWidth, window.innerHeight );
+			effect.domElement.style.color = 'white';
+			effect.domElement.style.backgroundColor = 'black';
+			effect.domElement.id = 'asciieffect'
+
+			document.body.appendChild( effect.domElement );
+
+			// responsive
+
+			function onWindowResize() {
+
+				camera.aspect = window.innerWidth / window.innerHeight;
+				camera.updateProjectionMatrix();
+
+				renderer.setSize( window.innerWidth, window.innerHeight );
+				effect.setSize( window.innerWidth, window.innerHeight );
+
+			}
+
+			window.addEventListener( 'resize', onWindowResize );
+
+			// animation
+
+			function animation( time ) {
+
+				mesh.rotation.x = time / 2000;
+				mesh.rotation.y = time / 1000;
+
+				renderer.render( scene, camera );
+				effect.render( scene, camera );
+
+			}
+		</script>
+	</body>
+</html>
