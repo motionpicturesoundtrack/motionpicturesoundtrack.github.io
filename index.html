@@ -54,7 +54,7 @@
 			const pmremGenerator = new THREE.PMREMGenerator( renderer );
 
 			const scene = new THREE.Scene();
-			scene.background = new THREE.Color( 0x252626 );
+			scene.background = new THREE.Color( 0x000000 );
 			scene.environment = pmremGenerator.fromScene( new RoomEnvironment( renderer ), 0.04 ).texture;
 
 			const geometry = new THREE.BoxGeometry( 0.1, 0.1, 0.1 );

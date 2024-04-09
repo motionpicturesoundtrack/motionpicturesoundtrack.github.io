@@ -3,7 +3,7 @@ body {
 	background-color: #000;
 	color: #fff;
 	font-family: Monospace;
-	font-size: 26px;
+	font-size: 24px;
 	line-height: 24px;
 	overscroll-behavior: none;
 }
@@ -27,7 +27,7 @@ button {
 }
 
 #linkbar {
-	position: absolute;
+	position: relative;
 	top: 0px;
 	width: 100%;
 	padding: 10px;
@@ -56,10 +56,37 @@ a, button, input, select {
 	pointer-events: auto;
 }
 
+@media (min-width: 768px) {
+	a, #linkbar {
+		font-size: 36px;
+		line-height: 36px;
+	}
+}
+
+@media (min-width: 320px) {
+	a, #linkbar {
+		font-size: 72px;
+		line-height: 72px;
+	}
+	canvas, #asciieffect {
+		top: 250px;
+	}
+}
+
+@media (min-width: 1024px) {
+	a, #linkbar {
+		font-size: 24px;
+		line-height: 24px;
+	}
+	canvas, #asciieffect {
+		top: 0px;
+	}
+}
+
 #notSupported {
 	width: 50%;
 	margin: auto;
-	background-color: #f00;
+	background-color: rgb(0, 30, 36);
 	margin-top: 20px;
 	padding: 10px;
 }
