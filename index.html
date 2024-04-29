@@ -17,8 +17,8 @@
 			<!-- <a href="https://osu.ppy.sh/users/12713070" target="_blank" rel="noopener">osu</a> -  -->
 			<a href="https://www.last.fm/user/deffizin" target="_blank" rel="noopener">lastfm</a> - 
 			<!-- <a href="https://mastodon.social/@motionpicturesoundtrack" target="_blank" rel="noopener">mastodon</a> -  -->
-			<a href="https://github.com/motionpicturesoundtrack" target="_blank" rel="noopener">github</a> -> 
-			<a href="mailto:joaopedrobtleite@hotmail.com" target="_blank" rel="noopener">work with me</a>
+			<a href="https://github.com/motionpicturesoundtrack" target="_blank" rel="noopener">github</a> - 
+			<a href="mailto:joaopedrobtleite@hotmail.com" target="_blank" rel="noopener">contact</a>
 		</div>
 		<script type="importmap">
 			{
@@ -34,9 +34,16 @@
 			// set zoom in/out limits so camera doesnt get out of bounds
 
 			import * as THREE from 'three';
+			import Stats from 'three/addons/libs/stats.module.js';
 			import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 			import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
 			import { AsciiEffect } from 'three/addons/effects/AsciiEffect.js';
+
+			const stats = new Stats();
+			stats.dom.style = 'position: absolute; right: 0; bottom: 0; z-index: 1';
+			document.body.appendChild( stats.dom );
+
+			document.getElementsByName('audio').volume = 0.05
 
 			const width = window.innerWidth, height = window.innerHeight;
 
@@ -96,6 +103,8 @@
 
 			function animation( time ) {
 
+				stats.update();
+
 				mesh.rotation.x = time / 2000;
 				mesh.rotation.y = time / 1000;
 
@@ -104,5 +113,9 @@
 
 			}
 		</script>
+		<audio controls autoplay>
+			<source src="motionpicturesoundtrack.ogg" type="audio/ogg">
+			<source src="motionpicturesoundtrack.mp3" type="audio/mpeg">
+		</audio>
 	</body>
 </html>

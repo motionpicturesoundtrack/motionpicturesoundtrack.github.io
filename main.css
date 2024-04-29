@@ -3,8 +3,8 @@ body {
 	background-color: #000;
 	color: #fff;
 	font-family: Monospace;
-	font-size: 24px;
-	line-height: 24px;
+	font-size: 32px;
+	line-height: 32px;
 	overscroll-behavior: none;
 	overflow: hidden;
 }
@@ -57,17 +57,30 @@ a, button, input, select {
 	pointer-events: auto;
 }
 
+audio {
+	position: absolute;
+	bottom: 0;
+	z-index: 1;
+}
+
+#stats {
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	z-index: 1;
+}
+
 @media (min-width: 768px) {
 	a, #linkbar {
-		font-size: 36px;
-		line-height: 36px;
+		font-size: 32px;
+		line-height: 32px;
 	}
 }
 
 @media (min-width: 320px) {
 	a, #linkbar {
-		font-size: 72px;
-		line-height: 72px;
+		font-size: 64px;
+		line-height: 64px;
 	}
 	canvas, #asciieffect {
 		top: 250px;
@@ -76,8 +89,8 @@ a, button, input, select {
 
 @media (min-width: 1024px) {
 	a, #linkbar {
-		font-size: 24px;
-		line-height: 24px;
+		font-size: 32px;
+		line-height: 32px;
 	}
 	canvas, #asciieffect {
 		top: 0px;
