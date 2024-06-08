@@ -57,12 +57,6 @@ a, button, input, select {
 	pointer-events: auto;
 }
 
-audio {
-	position: absolute;
-	bottom: 0;
-	z-index: 1;
-}
-
 #stats {
 	position: absolute;
 	bottom: 0;
